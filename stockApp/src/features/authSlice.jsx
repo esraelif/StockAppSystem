@@ -12,13 +12,18 @@ const authSlice = createSlice({
             state.loading = true;
             state.error = false;
         },
+        registerSuccess: (state, { payload }) => {
+            state.loading = false;
+            state.currentUser = payload.data.username;
+            state.token = payload.token
+        },
         fetchFail: state => {
             state.loading = false;
             state.error = true;
         }
     },
 })
-export const { fetchStart, fetchFail } = authSlice.actions;
+export const { fetchStart, fetchFail, registerSuccess } = authSlice.actions;
 
 
 export default authSlice.reducer;

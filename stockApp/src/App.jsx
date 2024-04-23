@@ -22,13 +22,13 @@ function App() {
 
   return (
     <>
-      <AppRouter />
-      {/* //   <ThemeProvider theme={theme}>
-    //     <Provider store={store}>
-          <AppRouter />
-    //     </Provider>
 
-    //   </ThemeProvider> */}
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <AppRouter />
+        </Provider>
+
+      </ThemeProvider>
 
     </>
   )
