@@ -10,7 +10,7 @@ import * as Yup from "yup";
 
 import AuthHeader from "../components/AuthHeader";
 import AuthImage from "../components/AuthImage";
-// import useAuthCall from "../hooks/useAuthCall";
+import useAuthCall from "../hooks/useAuthCall";
 
 //! Yup ile istediğimiz alanlara istediğimiz validasyon koşullarını
 //  oluşturuyoruz. Sonra oluşturduğumuz bu şemayı formike tanımlayarak
@@ -31,14 +31,14 @@ const SignupSchema = Yup.object().shape({
         .required("Required"),
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
-        .min(8, "Er muss mindestens 8 Zeichen lang sein!")
-        .max(50, "Er darf maximal 50 Zeichen lang sein!")
-        .matches(/\d+/, "Muss mindestens eine Ziffer enthalten!")
-        .matches(/[a-z]/, "Muss mindestens einen Kleinbuchstaben enthalten!")
-        .matches(/[A-Z]/, "Muss mindestens einen Großbuchstaben enthalten!")
+        .min(8, "At least 8 characters!")
+        .max(50, "At most 50 characters!")
+        .matches(/\d+/, "At least one digit!")
+        .matches(/[a-z]/, "At least one lowerCase letter!")
+        .matches(/[A-Z]/, "At least one UpperCase letter!")
         .matches(
             /[@$?!%&*]+/,
-            "Muss mindestens ein Sonderzeichen (@$!%*?&) enthalten!"
+            "At least one special characters (@$!%*?&)!"
         )
         .required(),
 });
@@ -59,6 +59,7 @@ const Register = () => {
                 }}
             >
                 <AuthHeader />
+                <AuthImage />
 
                 <Grid item xs={12} sm={10} md={6}>
                     <Avatar
@@ -179,7 +180,8 @@ const Register = () => {
                     </Box>
                 </Grid>
 
-                <AuthImage image={image} />
+
+
             </Grid>
         </Container>
     );
