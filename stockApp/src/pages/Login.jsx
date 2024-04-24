@@ -8,6 +8,8 @@ import LockIcon from "@mui/icons-material/Lock";
 import { Link } from "react-router-dom";
 import AuthHeader from "../components/AuthHeader";
 import AuthImage from "../components/AuthImage";
+import { Formik } from "formik";
+import LoginForm, { loginScheme } from "../components/LoginForm";
 
 const Login = () => {
     const theme = useTheme();
@@ -39,6 +41,17 @@ const Login = () => {
                     <Typography variant="h4" align="center" mb={4} color="secondary.main">
                         SIGN IN
                     </Typography>
+                    <Formik
+                        initialValues={{ email: "", password: "" }}
+                        validationSchema={loginScheme}
+                        onSubmit={(values, actions) => {
+                            login(values);
+                            actions.resetForm();
+                            actions.setSubmitting(false);
+                        }}
+                        component={props => <LoginForm {...props} />}>
+
+                    </Formik>
 
                     <Box sx={{ textAlign: "center", mt: 2, color: "secondary.main" }}>
                         <Link to="/register">
