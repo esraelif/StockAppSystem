@@ -77,7 +77,7 @@ const MenuListItems = () => {
                                 <Box sx={{
                                     width: 24, height: 24, bgcolor: "white", mask: `url(${item.icon}) no-repeat center / contain`,
                                     mr: 2,
-                                    bgcolor: "currentcolor"
+                                    bgColor: "currentcolor"
                                 }} />
                             </ListItemIcon>
 
