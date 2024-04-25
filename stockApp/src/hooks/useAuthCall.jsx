@@ -9,43 +9,45 @@ import { useNavigate } from 'react-router-dom'
 import { ToastErrorNotify, ToastSuccessNotify } from "../helper/ToastNotify";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const useAuthCall = () => {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { token } = useSelector((store) => store.auth);
-
-
     const register = async (userInfo) => {
-        dispatch(fetchStart())
+        dispatch(fetchStart());
         try {
-            const { data } = await axios.post(`${BASE_URL}users/`, userInfo)
-            console.log(data)
-            dispatch(registerSuccess(data))
-            navigate("/stock")
-
+            const { data } = await axios.post(
+                `${BASE_URL}users/`,
+                userInfo
+            );
+            console.log("register", data);
+            dispatch(registerSuccess(data));
+            navigate("/stock");
         } catch (error) {
-            dispatch(fetchFail())
-            console.log(error)
+            dispatch(fetchFail());
         }
-    }
+    };
     const login = async (userInfo) => {
         dispatch(fetchStart());
         try {
-            const { data } = await axios.post(`${BASE_URL}auth/login/`, userInfo);
-            dispatch(loginSuccess(data))
-            ToastSuccessNotify("Login performed")
+            const { data } = await axios.post(
+                `${BASE_URL}auth/login/`,
+                userInfo
+            );
+            dispatch(loginSuccess(data));
+            ToastSuccessNotify("Login performed");
             navigate("/stock");
-
+            console.log(data);
         } catch (error) {
-            dispatch(fetchFail())
-            ToastErrorNotify("Login can not be performed")
-
+            dispatch(fetchFail());
+            console.log(error);
+            ToastErrorNotify("Login can not be performed");
         }
-    }
+    };
     const logout = async () => {
         dispatch(fetchStart())
         try {
             await axios.get(`${BASE_URL}auth/logout/`, {
-                header: {
+                headers: {
                     Authorization: `Token ${token}`,
                 },
             });

@@ -11,6 +11,7 @@ import Products from "../pages/Products";
 import Sales from "../pages/Sales";
 import Purchase from "../pages/Purchase";
 
+
 const AppRouter = () => {
     return (
         <Router>
@@ -27,6 +28,7 @@ const AppRouter = () => {
                         <Route path="products" element={<Products />} />
                         <Route path="sales" element={<Sales />} />
                         <Route path="purchases" element={<Purchase />} />
+                        <Route path="brands" element={<Brands />} />
                     </Route>
                 </Route>
             </Routes>
