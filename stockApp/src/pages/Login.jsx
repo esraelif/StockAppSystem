@@ -10,9 +10,11 @@ import AuthHeader from "../components/AuthHeader";
 import AuthImage from "../components/AuthImage";
 import { Formik } from "formik";
 import LoginForm, { loginScheme } from "../components/LoginForm";
+import useAuthCall from "../hooks/useAuthCall";
 
 const Login = () => {
     const theme = useTheme();
+    const { login } = useAuthCall();
 
     return (
         <Container maxWidth="lg">

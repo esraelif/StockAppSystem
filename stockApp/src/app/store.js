@@ -11,6 +11,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import authReducer from "../features/authSlice";
+import stockSlice from "../features/StockSlice";
+
 
 const persistConfig = {
     key: "root",
@@ -22,6 +24,8 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 const store = configureStore({
     reducer: {
         auth: persistedReducer,
+        stock: stockSlice,
+
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
