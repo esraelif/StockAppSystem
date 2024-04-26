@@ -5,9 +5,9 @@ import useStockCall from '../hooks/useStockCall';
 const Firms = () => {
     const dispatch = useDispatch()
     const { token } = useSelector(state => state.auth)
-    const { getFirms } = useStockCall()
+    const { getStockData } = useStockCall()
     useEffect(() => {
-        getFirms()
+        getStockData("firms")
     }, [])
     return (
         <div>
