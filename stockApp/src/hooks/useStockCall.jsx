@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { brandSuccess, fetchFail, fetchStart, firmsSuccess, getSuccess } from '../features/StockSlice';
+import { fetchFail, fetchStart, getSuccess } from '../features/StockSlice';
 import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_BASE_URL
 

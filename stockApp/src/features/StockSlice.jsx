@@ -32,7 +32,7 @@ const stockSlice = createSlice({
         //     state.brands = payload;
         // },
         getSuccess: (state, { payload: { data, url } }) => {
-            console.log(payload)
+
             state.loading = false;
             state[url] = data;
             // state.brands = payload;
