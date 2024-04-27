@@ -10,7 +10,6 @@ import useStockCall from "../../hooks/useStockCall";
 import { btnStyle } from "../../styles/globalStyle";
 
 export default function FirmCard({
-
     _id,
     name,
     address,
@@ -60,7 +59,7 @@ export default function FirmCard({
                 <EditIcon
                     onClick={() => {
                         handleOpen();
-                        setInitialState({ id, name, phone, image, address });
+                        setInitialState({ _id, name, phone, image, address });
                     }}
                     sx={btnStyle}
                 />
