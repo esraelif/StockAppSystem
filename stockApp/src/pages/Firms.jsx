@@ -31,9 +31,9 @@ const Firms = () => {
             New Firm
         </Button>
 
-        <Grid container spacing={2}>
+        <Grid container spacing={2} mt={3}>
             {firms.map((firm) => (
-                <Grid items xs={12} md={6} lg={4} xl={3} key={firm._id}>
+                <Grid item xs={12} md={6} lg={4} xl={3} key={firm._id}>
                     <FirmCard {...firm} />
                 </Grid>
             ))}

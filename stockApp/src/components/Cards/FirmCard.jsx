@@ -10,6 +10,7 @@ import useStockCall from "../../hooks/useStockCall";
 import { btnStyle } from "../../styles/globalStyle";
 
 export default function FirmCard({
+
     _id,
     name,
     address,

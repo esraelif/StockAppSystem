@@ -27,12 +27,14 @@ const useAuthCall = () => {
         }
     };
     const login = async (userInfo) => {
+
         dispatch(fetchStart());
         try {
             const { data } = await axios.post(
                 `${BASE_URL}auth/login/`,
                 userInfo
             );
+            console.log(data)
             dispatch(loginSuccess(data));
             ToastSuccessNotify("Login performed");
             navigate("/stock");

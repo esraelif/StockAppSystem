@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 const Purchase = () => {
     const dispatch = useDispatch()
     const { token } = useSelector(state => state.auth)
-    const { getFirms } = useStockCall()
+    const { getStockData } = useStockCall()
 
     useEffect(() => {
-        getFirms()
+        getStockData("firms")
     }, [])
     return (<div>purchase</div>)
 
