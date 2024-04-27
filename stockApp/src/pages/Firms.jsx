@@ -3,7 +3,13 @@ import { useSelector } from 'react-redux';
 import useStockCall from '../hooks/useStockCall';
 import { Button, Container, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
+
+
+
 import FirmCard from '../components/Cards/FirmCard';
+import FirmModal from '../components/Modals/FirmModal';
+
+
 
 
 const Firms = () => {
@@ -11,6 +17,9 @@ const Firms = () => {
     // const { token } = useSelector(state => state.auth)
     const { getStockData } = useStockCall()
     const { firms } = useSelector((state) => state.stock)
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     console.log(firms)
     useEffect(() => {
         getStockData("firms")
@@ -27,6 +36,7 @@ const Firms = () => {
         </Typography>
         <Button
             variant='contained'
+            onClick={handleOpen}
         >
             New Firm
         </Button>
@@ -34,10 +44,11 @@ const Firms = () => {
         <Grid container spacing={2} mt={3}>
             {firms.map((firm) => (
                 <Grid item xs={12} md={6} lg={4} xl={3} key={firm._id}>
-                    <FirmCard {...firm} />
+                    <FirmCard {...firm} handleOpen={handleOpen} />
                 </Grid>
             ))}
         </Grid>
+        <FirmModal open={open} handleClose={handleClose} />
 
     </Container>
 

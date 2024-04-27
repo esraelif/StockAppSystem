@@ -60,7 +60,7 @@ export default function FirmCard({
                 <EditIcon
                     onClick={() => {
                         handleOpen();
-                        setInitialState({ _id, name, phone, image, address });
+                        setInitialState({ id, name, phone, image, address });
                     }}
                     sx={btnStyle}
                 />
