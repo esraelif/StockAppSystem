@@ -6,7 +6,7 @@ import {
 } from '../features/authSlice'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { ToastErrorNotify, ToastSuccessNotify } from "../helper/ToastNotify";
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const useAuthCall = () => {
     const dispatch = useDispatch();
@@ -36,13 +36,13 @@ const useAuthCall = () => {
             );
             console.log(data)
             dispatch(loginSuccess(data));
-            ToastSuccessNotify("Login performed");
+            toastSuccessNotify("Login performed");
             navigate("/stock");
             console.log(data);
         } catch (error) {
             dispatch(fetchFail());
             console.log(error);
-            ToastErrorNotify("Login can not be performed");
+            toastErrorNotify("Login can not be performed");
         }
     };
     const logout = async () => {
@@ -54,12 +54,12 @@ const useAuthCall = () => {
                 },
             });
             dispatch(logoutSuccess())
-            ToastSuccessNotify("Log out performed")
+            toastSuccessNotify("Log out performed")
             navigate("/")
 
         } catch (error) {
             dispatch(fetchFail())
-            ToastErrorNotify("Logout can not be performed")
+            toastErrorNotify("Logout can not be performed")
 
         }
     }

@@ -1,18 +1,52 @@
-import React, { useEffect } from 'react';
-import useStockCall from '../hooks/useStockCall';
-import { useDispatch, useSelector } from 'react-redux';
+import Container from "@mui/material/Container";
+import React, { useEffect, useState } from "react";
+import MyButton from "../components/Commons/MyButton";
+import PageHeader from "../components/Commons/PageHeader";
+import StockModal from "../components/Commons/StockModal";
+import PurchaseForm from "../components/Forms/PurchaseForm";
+import PurchaseTable from "../components/Tables/PurchaseTable";
+import useStockCall from "../hooks/useStockCall";
 
-const Purchase = () => {
-    const dispatch = useDispatch()
-    const { token } = useSelector(state => state.auth)
-    const { getStockData } = useStockCall()
-
+const Purchases = () => {
+    const { getProPurcFirBrands } = useStockCall();
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => {
+        setOpen(false);
+        setInitialState({
+            brandId: "",
+            firmId: "",
+            productId: "",
+            quantity: "",
+            price: "",
+        });
+    };
+    const [initialState, setInitialState] = useState({
+        brandId: "",
+        firmId: "",
+        productId: "",
+        quantity: "",
+        price: "",
+    });
     useEffect(() => {
-        getStockData("firms")
-    }, [])
-    return (<div>purchase</div>)
+        getProPurcFirBrands();
+    }, []);
 
+    return (
+        <Container maxWidth={"xl"}>
+            <PageHeader text="Purchases" />
+            <MyButton variant="contained" onClick={handleOpen} title="New Purchase" />
+            {open && (
+                <StockModal open={open} handleClose={handleClose}>
+                    <PurchaseForm handleClose={handleClose} initialState={initialState} />
+                </StockModal>
+            )}
+            <PurchaseTable
+                setInitialState={setInitialState}
+                handleOpen={handleOpen}
+            />
+        </Container>
+    );
+};
 
-}
-
-export default Purchase;
+export default Purchases;

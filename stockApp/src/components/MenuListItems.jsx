@@ -62,32 +62,47 @@ const selectedStyle = {
     color: "white",
 };
 const MenuListItems = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const { pathname } = useLocation()
     console.log(pathname)
     return (
         <div>
             <Toolbar />
-            <List >
+            <List>
                 {links.map((item, index) => (
-                    <ListItem key={item.title} disablePadding >
-                        <ListItemButton onClick={() => navigate(item.url)}
-                            sx={pathname == item.url ? selectedStyle : iconStyle} >
-                            <ListItemIcon >
-                                <Box sx={{
-                                    width: 24, height: 24, bgcolor: "white", mask: `url(${item.icon}) no-repeat center / contain`,
-                                    mr: 2,
-                                    bgColor: "currentcolor"
-                                }} />
-                            </ListItemIcon>
+                    <ListItem key={item.title} disablePadding>
+                        <ListItemButton
+                            onClick={() => navigate(item.url)}
+                            sx={pathname == item.url ? selectedStyle : iconStyle}
+                        >
+                            {/* <Box
+                  sx={{
+                    backgroundImage: `url(${item.icon})`,
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    width: 48,
+                    height: 48,
+                    backgroundColor: "red",
+                  }}
+                /> */}
 
+                            <Box
+                                sx={{
+                                    width: 24,
+                                    height: 24,
+                                    mask: `url(${item.icon}) no-repeat center / contain`,
+                                    mr: 2,
+                                    bgcolor: "currentColor",
+                                }}
+                            />
                             <ListItemText primary={item.title} />
                         </ListItemButton>
                     </ListItem>
                 ))}
             </List>
-        </div >
-    )
-}
+        </div>
+    );
+};
 
 export default MenuListItems

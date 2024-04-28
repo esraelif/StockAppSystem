@@ -19,10 +19,10 @@ const Products = () => {
 
     console.log("products:", products);
     useEffect(() => {
-        getStockData("products");
-        getStockData("categories");
-        getStockData("brands");
-        // getProCatBrand();
+        // getStockData("products");
+        // getStockData("categories");
+        // getStockData("brands");
+        getProCatBrand();
     }, []);
 
     return (
