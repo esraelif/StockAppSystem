@@ -53,7 +53,7 @@ export default function ProductModal({ open, handleClose, initialState }) {
                                 label="Category"
                                 onChange={handleChange}
                             >
-                                {categories.map(category => <MenuItem value={category._id}>{category.name}</MenuItem>)}
+                                {categories.map(category => <MenuItem key={category._id} value={category._id}>{category.name}</MenuItem>)}
                             </Select>
                         </FormControl>
                         <FormControl fullWidth>
@@ -66,22 +66,22 @@ export default function ProductModal({ open, handleClose, initialState }) {
                                 label="Brand"
                                 onChange={handleChange}
                             >
-                                {brands.map(brand => <MenuItem value={brand._id}>{brand.name}</MenuItem>)}
+                                {brands.map(brand => <MenuItem key={brand._id} value={brand._id}>{brand.name}</MenuItem>)}
 
                             </Select>
                         </FormControl>
 
                         <TextField
-                            label="Firm Logo"
-                            name="image"
-                            id="image"
+                            label="Product Name"
+                            name="name"
+                            id="name"
                             type="text"
                             variant="outlined"
-                            value={info.image}
+                            value={info.name}
                             onChange={handleChange}
                         />
                         <Button type="submit" variant="contained">
-                            {info._id ? "Update Product" : "Submit Product"}
+                            Submit Product
                         </Button>
                     </Box>
                 </Box>

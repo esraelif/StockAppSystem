@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import React from 'react';
 
-const PageHeader = ({{ text }}) => {
+const PageHeader = ({ text }) => {
     return (
         <Typography
             align='center'
