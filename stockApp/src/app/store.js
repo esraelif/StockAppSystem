@@ -11,8 +11,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import authReducer from "../features/authSlice";
-import stockSlice from "../features/StockSlice";
-
+import { stocksApi } from "../services/stocks";
 
 const persistConfig = {
     key: "root",
@@ -24,15 +23,16 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 const store = configureStore({
     reducer: {
         auth: persistedReducer,
-        stock: stockSlice,
-
+        [stocksApi.reducerPath]: stocksApi.reducer,
     },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
+    middleware: (getDefaultMiddleware) => {
+        const defaultMiddleware = getDefaultMiddleware({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }),
+        });
+        return defaultMiddleware.concat(stocksApi.middleware);
+    },
     devTools: process.env.NODE_ENV !== "production",
 });
 export let persistor = persistStore(store);

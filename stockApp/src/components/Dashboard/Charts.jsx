@@ -1,7 +1,7 @@
 import { AreaChart, Card, Title } from "@tremor/react";
-import Grid from "@mui/material/Grid";
 import Loading from "../Commons/Loading";
 import { useGetPurchasesQuery, useGetSalesQuery } from "../../services/stocks";
+import { Grid } from "@mui/material";
 
 const dataFormatter = (number) =>
   `€${Intl.NumberFormat("de").format(number).toString()}`;

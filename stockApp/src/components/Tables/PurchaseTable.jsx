@@ -2,14 +2,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import React from "react";
-import { useSelector } from "react-redux";
-import useStockCall from "../../hooks/useStockCall";
 import { btnStyle } from "../../styles/globalStyle";
 import DataTable from "../Commons/DataTable";
-
+import Loading from "../Commons/Loading";
+import { useDeletePurchaseMutation, useGetPurchasesQuery } from "../../services/stocks";
 const PurchaseTable = ({ handleOpen, setInitialState }) => {
-  const { purchases } = useSelector((state) => state.stock);
-  const { deleteStockData } = useStockCall();
+  const { data: purchases, isLoading } = useGetPurchasesQuery();
+  const [deletePurchase] = useDeletePurchaseMutation();
 
   const columns = [
     {
@@ -108,13 +107,14 @@ const PurchaseTable = ({ handleOpen, setInitialState }) => {
             key={"delete"}
             icon={<DeleteIcon />}
             label="Delete"
-            onClick={() => deleteStockData("purchases", _id)}
+            onClick={() => deletePurchase(_id)}
             sx={btnStyle}
           />,
         ];
       },
     },
   ];
+  if (isLoading) return <Loading />;
   return <DataTable rows={purchases} columns={columns} />;
 };
 

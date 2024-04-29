@@ -1,14 +1,16 @@
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import * as React from "react";
-import { useSelector } from "react-redux";
-import useStockCall from "../../hooks/useStockCall";
+import {
+  useDeleteProductMutation,
+  useGetProductsQuery,
+} from "../../services/stocks";
 import { btnStyle } from "../../styles/globalStyle";
 import DataTable from "../Commons/DataTable";
+import Loading from "../Commons/Loading";
 
 export default function ProductTable() {
-  const { products } = useSelector((state) => state.stock);
-  const { deleteStockData } = useStockCall();
-
+  const { data: products, isLoading } = useGetProductsQuery();
+  const [deleteProduct] = useDeleteProductMutation();
   const columns = [
     {
       field: "_id",
@@ -70,12 +72,12 @@ export default function ProductTable() {
       renderCell: (params) => (
         // console.log(params)
         <DeleteOutlineIcon
-          // onClick={() => deleteStockData("products", params.row._id)}
-          onClick={() => deleteStockData("products", params.id)}
+          onClick={() => deleteProduct(params.id)}
           sx={btnStyle}
         />
       ),
     },
   ];
+  if (isLoading) return <Loading />;
   return <DataTable rows={products} columns={columns} />;
 }
