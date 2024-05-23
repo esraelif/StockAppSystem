@@ -27,20 +27,20 @@ export const productFields = [
 ];
 
 export const purSalefields = [
-  {
-    label: "Quantity",
-    id: "quantity",
-    name: "quantity",
-    type: "number",
-    InputProps: { inputProps: { min: 0 } },
-    required: true,
-  },
-  {
-    label: "Price",
-    id: "price",
-    name: "price",
-    type: "number",
-    InputProps: { inputProps: { min: 0 } },
-    required: true,
-  },
-];
+    {
+      label: "Quantity",
+      id: "quantity",
+      name: "quantity",
+      type: "number",
+      InputProps: { inputProps: { min: 0 } },
+      required: true,
+    },
+    {
+      label: "Price",
+      id: "price",
+      name: "price",
+      type: "number",
+      InputProps: { inputProps: { min: 0 } },
+      required: true,
+    },
+  ];
