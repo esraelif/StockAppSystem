@@ -19,9 +19,51 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Outlet } from "react-router-dom";
 import useAuthCall from "../hooks/useAuthCall";
-import MenuListItems from "../components/MenuListItems";
+import MenuListItems from "../components/Navigation/MenuListItems";
 
-const container =
+const drawerWidth = 240;
+
+function Dashboard(props) {
+  const { logout } = useAuthCall();
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [isClosing, setIsClosing] = React.useState(false);
+
+  const handleDrawerClose = () => {
+    setIsClosing(true);
+    setMobileOpen(false);
+  };
+
+  const handleDrawerTransitionEnd = () => {
+    setIsClosing(false);
+  };
+
+  const handleDrawerToggle = () => {
+    if (!isClosing) {
+      setMobileOpen(!mobileOpen);
+    }
+  };
+
+  // const drawer = (
+  //   <div>
+  //     <Toolbar />
+  //     <List>
+  //       {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+  //         <ListItem key={text} disablePadding>
+  //           <ListItemButton>
+  //             <ListItemIcon>
+  //               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+  //             </ListItemIcon>
+  //             <ListItemText primary={text} />
+  //           </ListItemButton>
+  //         </ListItem>
+  //       ))}
+  //     </List>
+  //   </div>
+  // );
+
+  // Remove this const when copying and pasting into your project.
+  const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
@@ -119,4 +161,3 @@ const container =
 }
 
 export default Dashboard;
-
