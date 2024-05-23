@@ -8,7 +8,7 @@ import { CardHeader } from "@mui/material";
 import useStockCall from "../../hooks/useStockCall";
 import { btnStyle, flex } from "../../styles/globalStyle";
 
-const BrandCard = ({ name, image, _id, handleOpen, setInitialState }) => {
+const BrandCard = ({ name,image,_id, handleOpen, setInitialState }) => {
   const { deleteStockData } = useStockCall();
 
   return (
@@ -34,13 +34,13 @@ const BrandCard = ({ name, image, _id, handleOpen, setInitialState }) => {
         <EditIcon
           sx={btnStyle}
           onClick={() => {
-            setInitialState({ name, image, _id });
+            setInitialState({name,image,_id});
             handleOpen();
           }}
         />
         <DeleteOutlineIcon
           sx={btnStyle}
-          onClick={() => deleteStockData("brands", _id)}
+          onClick={() => deleteStockData("brands",_id)}
         />
       </CardActions>
     </Card>
