@@ -22,8 +22,8 @@ const SelectControl = ({ label, items, name, value, onNavigate, onChange }) => (
       required
     >
       {onNavigate && [
-        <MenuItem key="add-new" onClick={onNavigate}>{`Add New ${label}`}</MenuItem>,
-        <Divider key="divider" />,//* bazen bu tarz koşula bağlı renderlarda fragment ı hazır yapılar kabul etmeyebilir. İşte o zaman array kullanarak engeli aşabiliriz.
+        <MenuItem onClick={onNavigate}>{`Add New ${label}`}</MenuItem>,
+        <Divider />,//* bazen bu tarz koşula bağlı renderlarda fragment ı hazır yapılar kabul etmeyebilir. İşte o zaman array kullanarak engeli aşabiliriz.
       ]}
       {items.map((item) => (
         <MenuItem key={item._id} value={item._id}>
