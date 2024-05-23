@@ -10,7 +10,7 @@ import {
     getPurcSalesSuccess,
  
     getSuccess,
-} from "../features/stockSlice";
+} from "../features/StockSlice";
 import useAxios from "./useAxios";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
