@@ -2,13 +2,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import React from "react";
-import { useDeleteSaleMutation, useGetSalesQuery } from "../../services/stocks";
+import { useSelector } from "react-redux";
+import useStockCall from "../../hooks/useStockCall";
 import { btnStyle } from "../../styles/globalStyle";
 import DataTable from "../Commons/DataTable";
-import Loading from "../Commons/Loading";
+
 const SaleTable = ({ handleOpen, setInitialState }) => {
-  const { data: sales, isLoading } = useGetSalesQuery();
-  const [deleteSale] = useDeleteSaleMutation();
+  const { deleteStockData } = useStockCall();
+  const { sales } = useSelector((state) => state.stock);
   const columns = [
     {
       field: "createdAt",
@@ -86,14 +87,13 @@ const SaleTable = ({ handleOpen, setInitialState }) => {
             key={"delete"}
             icon={<DeleteIcon />}
             label="Delete"
-            onClick={() => deleteSale(_id)}
+            onClick={() => deleteStockData("sales", _id)}
             sx={btnStyle}
           />,
         ];
       },
     },
   ];
-  if (isLoading) return <Loading />;
   return <DataTable rows={sales} columns={columns} />;
 };
 
