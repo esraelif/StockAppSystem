@@ -10,11 +10,15 @@ import MyButton from "../components/Commons/MyButton";
 import PageHeader from "../components/Commons/PageHeader";
 import StockModal from "../components/Commons/StockModal";
 import FirmForm from "../components/Forms/FirmForm";
-import Loading from "../components/Commons/Loading";
-import { useGetFirmsQuery } from "../services/stocks";
+import useStockCall from "../hooks/useStockCall";
 
 const Firms = () => {
-    const { data: firms, isLoading } = useGetFirmsQuery();
+    //? firms verileri bana birden fazla yerde lazım olduğu için fonksiyonu burada değil de her yerden erişebileceğim bir noktada tanımlıyorum. İçerisinde react hookları lazım olduğu için de bu ortak nokta en iyi custom hook olmuş oluyor.
+    const {
+        // getFirms,
+        getStockData,
+    } = useStockCall();
+    const { firms } = useSelector((state) => state.stock);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -34,6 +38,11 @@ const Firms = () => {
     });
     console.log("firms:", firms);
     console.log("firms:", initialState);
+    useEffect(() => {
+        // getFirms()
+        getStockData("firms");
+    }, []);
+
     return (
         <Container maxWidth={"xl"}>
             {/* <Typography
@@ -49,21 +58,17 @@ const Firms = () => {
         New Firm
       </Button> */}
             <MyButton variant="contained" onClick={handleOpen} title="New Firm" />
-            {isLoading ? (
-                <Loading />
-            ) : (
-                <Grid container spacing={2} mt={3}>
-                    {firms.map((firm) => (
-                        <Grid item xs={12} md={6} lg={4} xl={3} key={firm._id}>
-                            <FirmCard
-                                {...firm}
-                                handleOpen={handleOpen}
-                                setInitialState={setInitialState}
-                            />
-                        </Grid>
-                    ))}
-                </Grid>
-            )}
+            <Grid container spacing={2} mt={3}>
+                {firms.map((firm) => (
+                    <Grid item xs={12} md={6} lg={4} xl={3} key={firm._id}>
+                        <FirmCard
+                            {...firm}
+                            handleOpen={handleOpen}
+                            setInitialState={setInitialState}
+                        />
+                    </Grid>
+                ))}
+            </Grid>
             {open && (
                 <StockModal open={open} handleClose={handleClose}>
                     <FirmForm handleClose={handleClose} initialState={initialState} />
