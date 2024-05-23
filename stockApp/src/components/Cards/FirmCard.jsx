@@ -10,64 +10,64 @@ import useStockCall from "../../hooks/useStockCall";
 import { btnStyle } from "../../styles/globalStyle";
 
 export default function FirmCard({
-    _id,
-    name,
-    address,
-    image,
-    phone,
-    handleOpen,
-    setInitialState,
+  _id,
+  name,
+  address,
+  image,
+  phone,
+  handleOpen,
+  setInitialState,
 }) {
-    const { deleteStockData } = useStockCall();
-    return (
-        <Card
-            sx={{
-                height: 390,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                padding: "0.5rem",
-            }}
-        >
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {address}
-                </Typography>
-            </CardContent>
-            <CardMedia
-                sx={{ height: 140, objectFit: "contain" }}
-                component="img"
-                image={image}
-                title={name}
-            />
-            <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                    Phone : {phone}
-                </Typography>
-            </CardContent>
+  const { deleteStockData } = useStockCall();
+  return (
+    <Card
+      sx={{
+        height: 390,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: "0.5rem",
+      }}
+    >
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {address}
+        </Typography>
+      </CardContent>
+      <CardMedia
+        sx={{ height: 140, objectFit: "contain" }}
+        component="img"
+        image={image}
+        title={name}
+      />
+      <CardContent>
+        <Typography variant="body2" color="text.secondary">
+          Phone : {phone}
+        </Typography>
+      </CardContent>
 
-            <CardActions
-                sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: 2,
-                }}
-            >
-                <EditIcon
-                    onClick={() => {
-                        handleOpen();
-                        setInitialState({ _id, name, phone, image, address });
-                    }}
-                    sx={btnStyle}
-                />
-                <DeleteOutlineIcon
-                    onClick={() => deleteStockData("firms", _id)}
-                    sx={btnStyle}
-                />
-            </CardActions>
-        </Card>
-    );
+      <CardActions
+        sx={{
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 2,
+        }}
+      >
+        <EditIcon
+          onClick={() => {
+            handleOpen();
+            setInitialState({ _id, name, phone, image, address });
+          }}
+          sx={btnStyle}
+        />
+        <DeleteOutlineIcon
+          onClick={() => deleteStockData("firms", _id)}
+          sx={btnStyle}
+        />
+      </CardActions>
+    </Card>
+  );
 }
