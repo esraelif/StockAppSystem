@@ -8,7 +8,7 @@ import Brands from "../pages/Brands";
 import Firms from "../pages/Firms";
 import Products from "../pages/Products";
 import Sales from "../pages/Sales";
-import Purchases from "../pages/Purchases";
+import Purchases from "../pages/Purchase";
 
 const AppRouter = () => {
   return (
