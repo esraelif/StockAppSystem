@@ -7,11 +7,11 @@ import BrandCard from "../components/Cards/BrandCard";
 import MyButton from "../components/Commons/MyButton";
 import PageHeader from "../components/Commons/PageHeader";
 import BrandForm from "../components/Forms/BrandForm";
-import { useGetBrandsQuery } from "../services/stocks";
-import StockModal from "../components/Commons/StockModal";
+import useStockCall from "../hooks/useStockCall";
 
 const Brands = () => {
-    const { data: brands, isLoading } = useGetBrandsQuery();
+    const { getStockData } = useStockCall();
+    const { brands, loading } = useSelector((state) => state.stock);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -27,6 +27,9 @@ const Brands = () => {
     });
     console.log("brands:", brands);
     console.log("brands:", initialState);
+    useEffect(() => {
+        getStockData("brands");
+    }, []);
 
     return (
         <Container maxWidth={"xl"}>
@@ -45,7 +48,7 @@ const Brands = () => {
             <MyButton variant="contained" onClick={handleOpen} title="New Brand" />
             <Grid container spacing={2} mt={3}>
                 {/* stock ta oluşturduğumuz loading stateini bu şekilde kullanabiliriz. */}
-                {isLoading ? (
+                {loading ? (
                     <img src={loadingGif} alt="loading..." height={500} />
                 ) : (
                     brands.map((brand) => (
