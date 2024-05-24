@@ -1,5 +1,8 @@
 ![](https://github.com/esraelif/StockAppSystem/blob/main/stockApp/public/assets/StockAppgif.gif)
 
+
+<img src="https://github.com/esraelif/StockAppSystem/blob/main/stockApp/public/assets/StockAppgif.gif?raw=true" style="width:300px; height:auto;" alt="Stock App GIF">
+
 StockApp StockApp is a web application designed to help users track and manage their stock portfolios. It provides real-time stock prices, portfolio management, and insightful analytics to help users make informed investment decisions. #Table of Contents *Features *Technologies *Installation *Usage *Contributing
 
 #Features Real-time stock price tracking Portfolio management Historical data and charts Stock performance analytics User authentication and profile management
