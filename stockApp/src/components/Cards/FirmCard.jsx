@@ -22,7 +22,7 @@ export default function FirmCard({
   return (
     <Card
       sx={{
-        height: 390,
+        height: 410,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
